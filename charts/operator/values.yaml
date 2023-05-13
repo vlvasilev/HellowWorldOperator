@@ -1,0 +1,4 @@
+image: hisshadow85/hello-world-operator:v0.1.5
+
+labels:
+  app: hello-world-operator 

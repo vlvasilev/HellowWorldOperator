@@ -1,0 +1,6 @@
+apiVersion: interview.swarz.com/v1alpha1
+kind: HelloWorld
+metadata:
+  name: helloworld-sample
+spec:
+  name: "Swarz"

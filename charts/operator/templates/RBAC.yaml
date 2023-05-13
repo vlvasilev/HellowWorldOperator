@@ -1,0 +1,43 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: helloworld-operator
+rules:
+- apiGroups:
+  - interview.swarz.com
+  resources:
+  - helloworlds
+  - helloworlds/status
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - ""
+  resources: 
+  - "events"
+  verbs: 
+  - "create"
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: helloworld-operator
+  namespace: {{ .Release.Namespace }}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: helloworld-operator
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: helloworld-operator
+subjects:
+- kind: ServiceAccount
+  name: helloworld-operator
+  namespace: {{ .Release.Namespace }}
